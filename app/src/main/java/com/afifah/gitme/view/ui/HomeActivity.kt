@@ -1,5 +1,6 @@
-package com.afifah.gitme.view.home
+package com.afifah.gitme.view.ui
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.KeyEvent
@@ -7,6 +8,10 @@ import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.afifah.gitme.databinding.ActivityHomeBinding
+import com.afifah.gitme.room.usermodel.UserData
+import com.afifah.gitme.view.adapter.UserAdapter
+import com.afifah.gitme.view.ui.ProfileUserActivity
+import com.afifah.gitme.view.viewModel.UserViewModel
 
 class HomeActivity : AppCompatActivity() {
 
@@ -21,18 +26,31 @@ class HomeActivity : AppCompatActivity() {
 
         adapter = UserAdapter()
         adapter.notifyDataSetChanged()
-        viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(UserViewModel::class.java)
+        adapter.setOnItemClickCallback(object : UserAdapter.OnItemClickCallback{
+            override fun onItemClicked(data: UserData) {
+                Intent(this@HomeActivity, ProfileUserActivity::class.java).also {
+                    it.putExtra(ProfileUserActivity.EXTRA_USERNAME, data.username)
+                    startActivity(it)
+                }
+            }
+
+        })
+        viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(
+            UserViewModel::class.java)
 
         binding.apply {
             rvGithubUser.layoutManager = LinearLayoutManager(this@HomeActivity)
             rvGithubUser.setHasFixedSize(true)
             rvGithubUser.adapter = adapter
+
             btnSearch.setOnClickListener {
                 searchUser()
             }
 
+            //apabila tombol enter ditekan maka akan search
             searchHint.setOnKeyListener { v, keyCode, event ->
                 if (event.action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER){
+                    searchUser()
                     return@setOnKeyListener true
                 }
                 return@setOnKeyListener false
@@ -59,7 +77,7 @@ class HomeActivity : AppCompatActivity() {
         if (state){
             binding.progressBar.visibility = View.VISIBLE
         }else{
-            binding.progressBar.visibility = View.INVISIBLE
+            binding.progressBar.visibility = View.GONE
         }
     }
 }

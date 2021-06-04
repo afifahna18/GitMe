@@ -1,4 +1,4 @@
-package com.afifah.gitme.view.home
+package com.afifah.gitme.view.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -12,6 +12,12 @@ class UserAdapter: RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
 
     private val listUser = ArrayList<UserData>()
 
+    private var onItemClickCallback: OnItemClickCallback? = null
+
+    fun setOnItemClickCallback (onItemClickCallback: OnItemClickCallback){
+        this.onItemClickCallback = onItemClickCallback
+    }
+
     fun setList(users: ArrayList<UserData>){
         listUser.clear()
         listUser.addAll(users)
@@ -20,11 +26,17 @@ class UserAdapter: RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
 
     inner class UserViewHolder(val binding: ItemUserHomeBinding): RecyclerView.ViewHolder(binding.root){
         fun bind(user: UserData){
-            binding.apply { Glide.with(itemView)
-                .load(user.photos)
-                .transition(DrawableTransitionOptions.withCrossFade())
-                .centerCrop()
-                .into(imgUserHome)
+
+            binding.root.setOnClickListener {
+                onItemClickCallback?.onItemClicked(user)
+            }
+
+            binding.apply {
+                Glide.with(itemView)
+                    .load(user.photos)
+                    .transition(DrawableTransitionOptions.withCrossFade())
+                    .centerCrop()
+                    .into(imgUserHome)
                 tvUserNameHome.text = user.username
                 tvUserLinkHome.text = user.url
             }
@@ -43,6 +55,10 @@ class UserAdapter: RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
     }
 
     override fun getItemCount(): Int = listUser.size
+
+    interface OnItemClickCallback{
+        fun onItemClicked(data: UserData)
+    }
 }
 
 

@@ -1,4 +1,4 @@
-package com.afifah.gitme.view.home
+package com.afifah.gitme.view.viewModel
 
 import android.util.Log
 import androidx.lifecycle.LiveData
