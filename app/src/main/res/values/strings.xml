@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">GitMe</string>
+    <string name="search">Search Your Favourite User</string>
+    <string name="username">Username</string>
+    <string name="link">link Url</string>
+    <string name="title_home1">Find your</string>
+    <string name="title_home2">Favourite User</string>
 </resources>
