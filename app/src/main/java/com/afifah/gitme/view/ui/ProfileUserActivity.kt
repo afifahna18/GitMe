@@ -8,11 +8,16 @@ import com.afifah.gitme.databinding.ActivityProfileUserBinding
 import com.afifah.gitme.view.adapter.SectionPagerAdapter
 import com.afifah.gitme.view.viewModel.ProfileUserViewModel
 import com.squareup.picasso.Picasso
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class ProfileUserActivity : AppCompatActivity() {
 
     companion object{
         const val EXTRA_USERNAME = "extra_username"
+        const val EXTRA_ID ="extra_id"
     }
 
     private lateinit var binding: ActivityProfileUserBinding
@@ -24,11 +29,12 @@ class ProfileUserActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val username = intent.getStringExtra(EXTRA_USERNAME)
+        val id = intent.getIntExtra(EXTRA_ID, 0)
 
         val bundle = Bundle()
         bundle.putString(EXTRA_USERNAME, username)
 
-        viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(ProfileUserViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(ProfileUserViewModel::class.java)
 
         username?.let { viewModel.setUserProfile(it) }
         viewModel.getUserDetail().observe(this, {
@@ -50,6 +56,32 @@ class ProfileUserActivity : AppCompatActivity() {
                 }
             }
         })
+
+        var isChecked = false
+        CoroutineScope(Dispatchers.IO).launch {
+            val count = viewModel.checkUser(id)
+            withContext(Dispatchers.Main){
+                if (count != null){
+                    if (count>0){
+                        binding.btnFavouriteUser.isChecked = true
+                        isChecked = true
+                    }else{
+                        binding.btnFavouriteUser.isChecked = false
+                        isChecked = false
+                    }
+                }
+            }
+        }
+
+        binding.btnFavouriteUser.setOnClickListener {
+            isChecked = !isChecked
+            if (isChecked){
+                viewModel.addToFavourite(username, id)
+            } else {
+                viewModel.removeFromFavourite(id)
+            }
+            binding.btnFavouriteUser.isChecked = isChecked
+        }
 
         val sectionPagerAdapter = SectionPagerAdapter(this, supportFragmentManager, bundle)
         binding.apply {
