@@ -1,6 +1,7 @@
 package com.afifah.gitme.room.api
 
 import com.afifah.gitme.room.usermodel.ProfileUserResponse
+import com.afifah.gitme.room.usermodel.UserData
 import com.afifah.gitme.room.usermodel.UserResponse
 import retrofit2.Call
 import retrofit2.http.GET
@@ -25,13 +26,13 @@ interface Api {
     @Headers("Authorization: token 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")
     fun getFollowersUsers(
         @Path("username") username: String
-    ): Call<ArrayList<UserResponse>>
+    ): Call<ArrayList<UserData>>
 
     @GET("users/{username}/following")
     @Headers("Authorization: token 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")
     fun getFollowingUsers(
         @Path("username") username: String
-    ): Call<ArrayList<UserResponse>>
+    ): Call<ArrayList<UserData>>
 
 
 }

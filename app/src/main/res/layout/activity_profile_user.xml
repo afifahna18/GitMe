@@ -159,10 +159,11 @@
             android:layout_height="wrap_content"
             android:background="@color/black"
             app:tabTextColor="@android:color/white"/>
+
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/view_pager"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="670dp"/>
     </LinearLayout>
 
 </androidx.core.widget.NestedScrollView>

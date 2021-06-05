@@ -3,10 +3,10 @@ package com.afifah.gitme.view.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.afifah.gitme.R
 import com.afifah.gitme.databinding.ItemUserHomeBinding
 import com.afifah.gitme.room.usermodel.UserData
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
+import com.squareup.picasso.Picasso
 
 class UserAdapter: RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
 
@@ -32,10 +32,10 @@ class UserAdapter: RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
             }
 
             binding.apply {
-                Glide.with(itemView)
+                Picasso.get()
                     .load(user.photos)
-                    .transition(DrawableTransitionOptions.withCrossFade())
-                    .centerCrop()
+                    .placeholder(R.drawable.ic_person)
+                    .error(R.drawable.ic_person)
                     .into(imgUserHome)
                 tvUserNameHome.text = user.username
                 tvUserLinkHome.text = user.url

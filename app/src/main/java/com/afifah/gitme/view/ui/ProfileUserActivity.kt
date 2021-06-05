@@ -3,11 +3,11 @@ package com.afifah.gitme.view.ui
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
+import com.afifah.gitme.R
 import com.afifah.gitme.databinding.ActivityProfileUserBinding
 import com.afifah.gitme.view.adapter.SectionPagerAdapter
 import com.afifah.gitme.view.viewModel.ProfileUserViewModel
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
+import com.squareup.picasso.Picasso
 
 class ProfileUserActivity : AppCompatActivity() {
 
@@ -25,6 +25,9 @@ class ProfileUserActivity : AppCompatActivity() {
 
         val username = intent.getStringExtra(EXTRA_USERNAME)
 
+        val bundle = Bundle()
+        bundle.putString(EXTRA_USERNAME, username)
+
         viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(ProfileUserViewModel::class.java)
 
         username?.let { viewModel.setUserProfile(it) }
@@ -39,15 +42,16 @@ class ProfileUserActivity : AppCompatActivity() {
                     tvFollowersDetail.text = it.followers.toString()
                     tvFollowingDetail.text = it.following.toString()
                     tvRepositoryDetail.text = it.repository.toString()
-                    Glide.with(this@ProfileUserActivity)
+                    Picasso.get()
                         .load(it.photo)
-                        .transition(DrawableTransitionOptions.withCrossFade())
-                        .centerCrop()
+                        .placeholder(R.drawable.ic_person)
+                        .error(R.drawable.ic_person)
                         .into(imageAvatar)
                 }
             }
         })
-        val sectionPagerAdapter = SectionPagerAdapter(this, supportFragmentManager)
+
+        val sectionPagerAdapter = SectionPagerAdapter(this, supportFragmentManager, bundle)
         binding.apply {
             viewPager.adapter = sectionPagerAdapter
             tabsFollow.setupWithViewPager(viewPager)
