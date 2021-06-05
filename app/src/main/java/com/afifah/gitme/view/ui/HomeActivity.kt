@@ -56,6 +56,12 @@ class HomeActivity : AppCompatActivity() {
                 }
             }
 
+            btnSettings.setOnClickListener {
+                Intent(this@HomeActivity, SettingsActivity::class.java).also{
+                    startActivity(it)
+                }
+            }
+
 
 
             //apabila tombol enter ditekan maka akan search

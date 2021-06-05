@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/black"
+    tools:context=".view.ui.SettingsActivity">
+
+    <Switch
+        android:id="@+id/switch_alarm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/set_alarm"
+        android:textColor="@color/white"
+        android:textOff="@string/set_alarm_on"
+        android:textOn="@string/set_alarm_off"
+        android:padding="20dp"
+        android:textSize="20sp"
+        android:fontFamily="@font/gilroy_bold"
+        tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+    <Button
+        android:id="@+id/btn_language"
+        style="@style/Widget.AppCompat.Button.Borderless.Colored"
+        android:background="@color/teal_700"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:layout_margin="16dp"
+        android:text="@string/set_language"
+        android:textAlignment="textStart"
+        android:textColor="@android:color/white"
+        android:textSize="14sp" />
+
+</LinearLayout>
