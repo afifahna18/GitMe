@@ -13,7 +13,10 @@ data class FavouriteUserData(
     val username: String,
     @SerializedName("id")
     val id: Int,
-
+    @SerializedName("avatar_url")
+    val photo: String,
+    @SerializedName("html_url")
+    val url: String,
 
 ) : Serializable
 

@@ -18,6 +18,8 @@ class ProfileUserActivity : AppCompatActivity() {
     companion object{
         const val EXTRA_USERNAME = "extra_username"
         const val EXTRA_ID ="extra_id"
+        const val EXTRA_PHOTO ="extra_photo"
+        const val EXTRA_URL = "extra_url"
     }
 
     private lateinit var binding: ActivityProfileUserBinding
@@ -30,6 +32,9 @@ class ProfileUserActivity : AppCompatActivity() {
 
         val username = intent.getStringExtra(EXTRA_USERNAME)
         val id = intent.getIntExtra(EXTRA_ID, 0)
+        val photo = intent.getStringExtra(EXTRA_PHOTO)
+        val url = intent.getStringExtra(EXTRA_URL)
+
 
         val bundle = Bundle()
         bundle.putString(EXTRA_USERNAME, username)
@@ -76,7 +81,7 @@ class ProfileUserActivity : AppCompatActivity() {
         binding.btnFavouriteUser.setOnClickListener {
             isChecked = !isChecked
             if (isChecked){
-                viewModel.addToFavourite(username, id)
+                viewModel.addToFavourite(username, id, photo, url)
             } else {
                 viewModel.removeFromFavourite(id)
             }
@@ -89,10 +94,6 @@ class ProfileUserActivity : AppCompatActivity() {
             tabsFollow.setupWithViewPager(viewPager)
         }
     }
-
-
-
-
 
 
 

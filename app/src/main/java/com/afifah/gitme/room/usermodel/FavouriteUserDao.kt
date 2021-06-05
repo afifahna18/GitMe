@@ -18,6 +18,8 @@ interface FavouriteUserDao {
 
     @Query("DELETE FROM user_favourite WHERE user_favourite.id = :id")
     suspend fun removeFromFavourite(id: Int): Int
+
+
 }
 
 

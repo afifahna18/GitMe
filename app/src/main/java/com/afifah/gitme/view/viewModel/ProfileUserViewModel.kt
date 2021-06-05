@@ -22,10 +22,9 @@ class ProfileUserViewModel(application: Application) : AndroidViewModel(applicat
     val user = MutableLiveData<ProfileUserResponse>()
 
     private var userDao: FavouriteUserDao?
-    private var userdb: db?
+    private var userdb: db? = db.getDatabase(application)
 
     init {
-        userdb = db.getDatabase(application)
         userDao = userdb?.favouriteUserDao()
     }
 
@@ -53,11 +52,13 @@ class ProfileUserViewModel(application: Application) : AndroidViewModel(applicat
         return user
     }
 
-    fun addToFavourite(username: String, id:Int){
+    fun addToFavourite(login: String, id:Int, avatarUrl: String, url: String){
         CoroutineScope(Dispatchers.IO).launch {
             var user = FavouriteUserData(
-                username,
-                id
+                login,
+                id,
+                avatarUrl,
+                url
             )
             userDao?.addToFavourite(user)
         }

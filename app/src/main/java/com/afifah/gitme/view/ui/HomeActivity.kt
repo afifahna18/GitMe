@@ -31,6 +31,8 @@ class HomeActivity : AppCompatActivity() {
                 Intent(this@HomeActivity, ProfileUserActivity::class.java).also {
                     it.putExtra(ProfileUserActivity.EXTRA_USERNAME, data.username)
                     it.putExtra(ProfileUserActivity.EXTRA_ID, data.id)
+                    it.putExtra(ProfileUserActivity.EXTRA_PHOTO, data.photos)
+                    it.putExtra(ProfileUserActivity.EXTRA_URL, data.url)
                     startActivity(it)
                 }
             }
@@ -48,6 +50,14 @@ class HomeActivity : AppCompatActivity() {
                 searchUser()
             }
 
+            btnFavourite.setOnClickListener {
+                Intent(this@HomeActivity, FavouriteActivity::class.java).also{
+                    startActivity(it)
+                }
+            }
+
+
+
             //apabila tombol enter ditekan maka akan search
             searchHint.setOnKeyListener { v, keyCode, event ->
                 if (event.action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER){
@@ -63,6 +73,8 @@ class HomeActivity : AppCompatActivity() {
                 showLoading(false)
             }
         })
+
+
     }
 
     private fun searchUser(){
