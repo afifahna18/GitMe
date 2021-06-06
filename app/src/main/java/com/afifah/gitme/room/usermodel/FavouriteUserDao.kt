@@ -1,5 +1,6 @@
 package com.afifah.gitme.room.usermodel
 
+import android.database.Cursor
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
@@ -18,6 +19,9 @@ interface FavouriteUserDao {
 
     @Query("DELETE FROM user_favourite WHERE user_favourite.id = :id")
     suspend fun removeFromFavourite(id: Int): Int
+
+    @Query("SELECT * FROM user_favourite ")
+    fun findAll(): Cursor
 
 
 }

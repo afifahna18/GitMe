@@ -23,8 +23,6 @@ class AlarmReceiver : BroadcastReceiver() {
         private const val TIME_FORMAT = "HH:mm"
         const val TYPE = "type"
         private const val ID_ALARM = 101
-
-
     }
 
     override fun onReceive(context: Context, intent: Intent) {
