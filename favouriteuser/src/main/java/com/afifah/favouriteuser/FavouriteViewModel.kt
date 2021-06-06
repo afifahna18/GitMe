@@ -25,6 +25,7 @@ class FavouriteViewModel(application: Application): AndroidViewModel(application
 
         val listConverted = MappingHelper.mapCursorToArrayList(cursor)
         list.postValue(listConverted)
+        Log.d("FavVM", listConverted.toString())
     }
 
     fun getFavouriteUser(): LiveData<ArrayList<UserData>>?{

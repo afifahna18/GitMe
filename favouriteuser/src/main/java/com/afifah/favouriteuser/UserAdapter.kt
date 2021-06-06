@@ -27,14 +27,13 @@ class UserAdapter: RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
 
             binding.apply {
                 Picasso.get()
-                    .load(user.avatar_url)
+                    .load(user.photos)
                     .placeholder(R.drawable.ic_person)
                     .error(R.drawable.ic_person)
                     .into(imgUserHome)
-                tvUserNameHome.text = user.login
-                tvUserLinkHome.text = user.html_url
+                tvUserNameHome.text = user.username
+                tvUserLinkHome.text = user.url
             }
-
 
         }
     }

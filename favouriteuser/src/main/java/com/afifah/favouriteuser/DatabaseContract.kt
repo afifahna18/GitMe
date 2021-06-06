@@ -9,9 +9,9 @@ object DatabaseContract {
 
     internal class UserFavouriteColumns: BaseColumns{
         companion object{
-            const val TABLE_NAME = "username"
+            const val TABLE_NAME = "user_favourite"
             const val ID = "id"
-            const val USERNAME = "login"
+            const val USERNAME = "username"
             const val PHOTO = "photo"
             const val URL = "url"
 

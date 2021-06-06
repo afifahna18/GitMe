@@ -1,8 +1,15 @@
 package com.afifah.favouriteuser
 
+import com.google.gson.annotations.SerializedName
+
+
 data class UserData (
+    @SerializedName("id")
     val id: Int,
-    val login: String,
-    val avatar_url: String,
-    val html_url: String,
+    @SerializedName("login")
+    val username: String,
+    @SerializedName("avatar_url")
+    val photos: String,
+    @SerializedName("html_url")
+    val url: String,
 )
