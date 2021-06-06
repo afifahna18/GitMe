@@ -19,7 +19,7 @@ class AlarmReceiver : BroadcastReceiver() {
         private const val NOTIFICATION_ID = 1
         private const val CHANNEL_ID = "01"
         private const val CHANNEL_NAME = "Alarm"
-         const val MESSAGE = "message"
+        const val MESSAGE = "message"
         private const val TIME_FORMAT = "HH:mm"
         const val TYPE = "type"
         private const val ID_ALARM = 101
@@ -30,7 +30,7 @@ class AlarmReceiver : BroadcastReceiver() {
     }
 
     private fun sendNotification(context: Context) {
-        val intent = context?.packageManager.getLaunchIntentForPackage("com.afifah.gitme.broadcastreceiver")
+        val intent = context?.packageManager.getLaunchIntentForPackage("com.afifah.gitme")
 
         val pendingIntent = PendingIntent.getActivity(context, 0, intent, 0)
 
@@ -67,7 +67,6 @@ class AlarmReceiver : BroadcastReceiver() {
         val pendingIntent = PendingIntent.getBroadcast(context, ID_ALARM, intent, 0)
         alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.timeInMillis, AlarmManager.INTERVAL_DAY, pendingIntent)
         Toast.makeText(context, "ALARM SUDAH DINYALAKAN", Toast.LENGTH_SHORT).show()
-
     }
 
     private fun isDateInvalid(time: String, timeFormat: String): Boolean {

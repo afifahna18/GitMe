@@ -21,7 +21,11 @@ class SettingsActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val alarmPreference = AlarmPreference(this)
-        binding.switchAlarm.isChecked = alarmPreference.getReminder().isAlarm
+        if (alarmPreference.getReminder().isAlarm){
+            binding.switchAlarm.isChecked = true
+        }else{
+            binding.switchAlarm.isChecked = false
+        }
 
         alarmReceiver = AlarmReceiver()
 
@@ -35,7 +39,7 @@ class SettingsActivity : AppCompatActivity() {
         binding.switchAlarm.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked){
                 saveReminder(true)
-                alarmReceiver.setRepeatingAlarm(this, "Repeating ALARM","05.37", "GITHUB REMINDER")
+                alarmReceiver.setRepeatingAlarm(this, "Repeating ALARM","4:17", "GITHUB REMINDER")
             }else{
                 saveReminder(false)
                 alarmReceiver.cancelAlarm(this)

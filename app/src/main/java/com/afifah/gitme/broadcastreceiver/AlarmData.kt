@@ -1,8 +1,5 @@
 package com.afifah.gitme.broadcastreceiver
 
-class AlarmData (
-
+data class AlarmData (
     var isAlarm: Boolean = false
-
-
 )
