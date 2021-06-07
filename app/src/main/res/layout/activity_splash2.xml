@@ -15,7 +15,7 @@
         android:layout_width="400dp"
         android:layout_height="400dp"
         android:alpha="0.0"
-        android:src="@drawable/github_logo"
+        android:src="@drawable/github"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

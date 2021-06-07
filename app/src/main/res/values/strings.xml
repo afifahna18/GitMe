@@ -21,6 +21,11 @@
     <string name="git_me">GIT ME</string>
     <string name="by">Created by</string>
     <string name="afifah">Afifah Nur Ariani</string>
+    <string name="skip_intro">skip</string>
+    <string name="next_intro">next</string>
+    <string name="title_intro">Title Intro</string>
+    <string name="title_intro_desc">Title Intro Desc</string>
+
 
 
 </resources>

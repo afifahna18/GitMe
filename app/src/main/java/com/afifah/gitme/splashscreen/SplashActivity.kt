@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.constraintlayout.motion.widget.MotionLayout
 import com.afifah.gitme.R
+import com.afifah.gitme.intro.IntroActivity
 import com.afifah.gitme.view.ui.HomeActivity
 
 class SplashActivity : AppCompatActivity() {
@@ -21,7 +22,8 @@ class SplashActivity : AppCompatActivity() {
             }
 
             override fun onTransitionCompleted(p0: MotionLayout?, p1: Int) {
-                startActivity(Intent(this@SplashActivity, HomeActivity::class.java))
+                startActivity(Intent(this@SplashActivity, IntroActivity::class.java))
+                finish()
             }
 
             override fun onTransitionTrigger(p0: MotionLayout?, p1: Int, p2: Boolean, p3: Float) {
