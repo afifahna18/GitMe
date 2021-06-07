@@ -18,6 +18,9 @@
     <string name="set_alarm_on">ON</string>
     <string name="set_alarm_off">OFF</string>
     <string name="set_language">languange</string>
+    <string name="git_me">GIT ME</string>
+    <string name="by">Created by</string>
+    <string name="afifah">Afifah Nur Ariani</string>
 
 
 </resources>

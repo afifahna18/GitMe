@@ -39,7 +39,7 @@ class SettingsActivity : AppCompatActivity() {
         binding.switchAlarm.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked){
                 saveReminder(true)
-                alarmReceiver.setRepeatingAlarm(this, "Repeating ALARM","4:17", "GITHUB REMINDER")
+                alarmReceiver.setRepeatingAlarm(this, "Repeating ALARM","4:21", "GITHUB REMINDER")
             }else{
                 saveReminder(false)
                 alarmReceiver.cancelAlarm(this)

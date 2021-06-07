@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.afifah.gitme.R
 import com.afifah.gitme.databinding.ActivityFavouriteBinding
 import com.afifah.gitme.room.usermodel.FavouriteUserData
 import com.afifah.gitme.room.usermodel.UserData
